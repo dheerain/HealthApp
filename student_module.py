@@ -105,6 +105,7 @@ def saveNewUser(data,update=False,index=0):
     data_dict.update({'diet':dietList})
     userData = loadData()
     if not update:
+        data_dict['weight']= [data_dict['weight']]
         userData.append(data_dict)
     else:
         if isinstance(userData[index]['weight'],list):
