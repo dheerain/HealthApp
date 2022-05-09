@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta content="description" name="description">
+    <meta name="google" content="notranslate" />
+    <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
+    <link href="./assets/favicon.ico" rel="icon">
+
+    <link href="" rel="stylesheet">
+
+
+    <title>Health App</title>
+
+    <link href="./main.550dcf66.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Add your content of header -->
+    <header>
+        <nav class="navbar navbar-default active">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+                    <a class="navbar-brand" href="./" title="">
+                        <img src="./assets/images/mashup-icon.svg" class="navbar-logo-img" alt=""> Health Administrator
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="./" title="">Home</a></li>
+                        
+                        <li><a href="./dashboard" title="">Dashboard </a></li>
+                        <!-- <li>
+                            <p>
+                                <a href="./components.html" class="btn btn-default navbar-btn" title="">Components</a>
+                            </p>
+                        </li> -->
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Add your site or app content here -->
+    <div class="alert alert-danger" align="center" style="margin-left: 35%;margin-right: 35%;">Enter New Record Information</div>
+    <br>
+
+    <div class="container grid">
+        <form action="./submitadmissiondata" method="POST" class="form-group">
+            <div class="column">
+                <div class="col-sm-5">
+                    <label>Fill in the Details:-</label>
+                    <input type="text" class="form-control" name="name" placeholder="Full Name" required /><br>
+                    <label>Weight</label>
+                    <input type="text" class="form-control" name="weight" placeholder="Weight" required /><br>
+                    
+                    <br>
+                    <label>Check Medical History Boxes Correctly</label>
+                    <br>
+                    {% for item in disease %}
+                        <input type="checkbox" name="{{item}}" > {{item}} </input><br>
+                    {% endfor %}
+                    <!-- <input type="checkbox" name="SUGAR">SUGAR</input><br>
+                    <input type="checkbox" name="THYROID"> THYROID </input><br> -->
+
+                    <h2><u>Add Diet Items</u></h2><br>
+
+                    <table id="breakfasttable",class="myclass">
+                        <tr>
+                            <th class="myclass">Item</th>
+                            <th class="myclass">Quantity (Grams)</th>
+                            <th class="myclass">Time</th>
+                        </tr> 
+                        <tr> 
+                            <td id="col0" ><select name="item">
+                                                {% for item in food %}
+                                                <option value="{{item}}">{{item}}</option>
+                                                {% endfor %}
+                                            </select></td>
+                            <td id="col1" ><input type="text" name="quantity"/></td>
+                            <td id="col2" ><select name="time">
+                                                                <option value="Breakfast">Breakfast</option>
+                                                                <option value="Lunch"> Lunch</option>
+                                                                <option value="Snack1">Snack1</option>
+                                                                <option value="Snack2">Snack2</option>
+                                                                <option value="Dinner">Dinner</option>
+                                                          </select></td>
+                        </tr>  
+                    </table> 
+                    <br>
+                    <table> 
+                        <tr> 
+                            <td><input type="button" value="Add Row" onclick="addRows()" /></td>
+                            <td><input type="button" value="Delete Row" onclick="deleteRows()" /></td> 
+                        </tr>  
+                    </table> 
+                </div>
+                
+
+            </div>
+            <div class="column">
+                <div class="col-sm-4">
+                    <label> Gender </label>
+                    <select class="form-control" name="gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                    </select>
+                    <label>Age</label>
+                    <input type="text" class="form-control" name="age" placeholder="Age" required /><br>
+
+                    <label>Date</label>
+                    <input type="date" class="form-control" name="date" placeholder="Date" required /><br>
+
+                    
+                </div>
+            </div>
+            <!-- <hr class="rounded" style="border-top: 8px solid #bbb; border-radius: 5px;"> -->
+            <br><input type="submit" value="Submit Form" class="btn btn-primary btn-lg" style="margin-left: 50%;" />
+            
+        </form>
+    </div>
+    <!-- Code to Add Print Button to the Page -->
+    <!-- <form>
+        <input class="col-sm-4" type="button" value="Print" onclick="window.print()" />
+    </form> -->
+</body>
+
+<script>
+    var loadFile = function(event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+    // function(event) {
+    //     var rolNum = document.getElementsByName('rollnum');
+    
+    // };
+ 
+    function addRows(){ 
+        var table = document.getElementById('breakfasttable');
+        var rowCount = table.rows.length;
+        var cellCount = table.rows[0].cells.length; 
+        var row = table.insertRow(rowCount);
+        for(var i =0; i <= cellCount; i++){
+            var cell = 'cell'+i;
+            cell = row.insertCell(i);
+            var copycel = document.getElementById('col'+i).innerHTML;
+            cell.innerHTML=copycel;
+        }
+    }
+    function deleteRows(){
+        var table = document.getElementById('breakfasttable');
+        var rowCount = table.rows.length;
+        if(rowCount > '2'){
+            var row = table.deleteRow(rowCount-1);
+            rowCount--;
+        }
+        else{
+            alert('There should be atleast one row');
+        }
+    }
+</script>
+
+</html>
