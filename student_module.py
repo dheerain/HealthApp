@@ -1,5 +1,5 @@
 import pickle
-from config import disease_config
+from config import disease_config,food_config
 
 
 userData=[]
@@ -98,7 +98,11 @@ def saveNewUser(data,update=False,index=0):
 
     dietList =[]
     for idx, item in enumerate(data['item']):
-        dietList.append([data['item'][idx],int(data['quantity'][idx]),data['time'][idx]])
+        protein=round(int(data['quantity'][idx])*food_config[data['item'][idx]]['Protein'],2)
+        carbs=round(int(data['quantity'][idx])*food_config[data['item'][idx]]['Protein'],2)
+        fat=round(int(data['quantity'][idx])*food_config[data['item'][idx]]['Protein'],2)
+        calories=round(int(data['quantity'][idx])*food_config[data['item'][idx]]['Protein'],2)
+        dietList.append([data['item'][idx],int(data['quantity'][idx]),data['time'][idx],protein,carbs,fat,calories])
 
     # print(dietList)
     global userData

@@ -64,11 +64,11 @@ def submitAdmissionData():
             calories =round(sum([keyData[1]*food_config[keyData[0]]['Calories'] for keyData in data_dict['diet']]),2)
             a,b,c =data_dict['date'].split('-')
             data_dict['date']='-'.join([c,b,a])
-            for keyData in data_dict['diet']:
-                  keyData.append(round(keyData[1]*food_config[keyData[0]]['Protein'],2))
-                  keyData.append(round(keyData[1]*food_config[keyData[0]]['Carbs'],2))
-                  keyData.append(round(keyData[1]*food_config[keyData[0]]['Fat'],2))
-                  keyData.append(round(keyData[1]*food_config[keyData[0]]['Calories'],2))
+            # for keyData in data_dict['diet']:
+            #       keyData.append(round(keyData[1]*food_config[keyData[0]]['Protein'],2))
+            #       keyData.append(round(keyData[1]*food_config[keyData[0]]['Carbs'],2))
+            #       keyData.append(round(keyData[1]*food_config[keyData[0]]['Fat'],2))
+            #       keyData.append(round(keyData[1]*food_config[keyData[0]]['Calories'],2))
       
       return render_template('dopayment.html' , data = data_dict,disease_config=disease_config,food_config=food_config,general_instruction=general_instruction,protein=protein,carbs=carbs,fat=fat,calories=calories)
       
@@ -177,11 +177,11 @@ def updateStudentData():
             a,b,c =data_dict['date'].split('-')
             data_dict['date']='-'.join([c,b,a])
 
-            for keyData in data_dict['diet']:
-                  keyData.append(round(keyData[1]*food_config[keyData[0]]['Protein'],2))
-                  keyData.append(round(keyData[1]*food_config[keyData[0]]['Carbs'],2))
-                  keyData.append(round(keyData[1]*food_config[keyData[0]]['Fat'],2))
-                  keyData.append(round(keyData[1]*food_config[keyData[0]]['Calories'],2))
+            # for keyData in data_dict['diet']:
+            #       keyData.append(round(keyData[1]*food_config[keyData[0]]['Protein'],2))
+            #       keyData.append(round(keyData[1]*food_config[keyData[0]]['Carbs'],2))
+            #       keyData.append(round(keyData[1]*food_config[keyData[0]]['Fat'],2))
+            #       keyData.append(round(keyData[1]*food_config[keyData[0]]['Calories'],2))
 
             return render_template('dopayment.html' , data = data_dict,disease_config=disease_config,food_config=food_config,general_instruction=general_instruction,protein=protein,carbs=carbs,fat=fat,calories=calories)
 
